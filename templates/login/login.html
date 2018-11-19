@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>АВТОРИЗАЦИЯ</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
+</head>
+<body>
+
+
+    <div class="authorization">
+    {% if user.is_authenticated %}
+        <h3> Привет, {{user.first_name}} {{user.last_name}} </h3>
+        <img src="{{user.user_profile.avatar.url}}" width="100px" height="100px" /> <br />
+     <a href="{% url 'logout' %}"> ВЫЙТИ </a>
+   {% else %}
+    <h3> ЕСЛИ ТЫ НАШ РЕДАКТОР ТЫ ЗНАЕШЬ ЧТО ДЕЛАТЬ </h3>
+     <form method="POST">
+         {% csrf_token %}
+         <p>
+             <label>НИКНЕЙМ</label>
+             <input type="text" placeholder="username ..." name="username">
+         </p>
+         <p>
+             <label>ПАРОЛЬ</label>
+             <input type="password" placeholder="password" name="password">
+         </p>
+         <button type="submit">ВОЙТИ</button>
+     </form>
+   {% endif %}
+    </div>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+

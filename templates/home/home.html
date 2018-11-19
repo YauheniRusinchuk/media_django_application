@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block metatitle %} Мы это независимое мнение обо всем что происходит вокрут нас. Мы стараемся писать о проблемах которые нас окружают. {% endblock metatitle %}
+{% block metades %} Пишем о проблемах современного мира. О том что нас окружает. Проблемы человечества и России. Разбираемся как улучшить нашу жизнь вместе. {% endblock metades %}
+{% block title %} ZAREPOST.COM - МЕСТО ГДЕ ТЫ НАЙДЕШЬ МЫСЛИ И МНЕНИЯ НЕЗАВИСИМЫХ ЛЮДЕЙ. {% endblock title %}
+
+{% block content %}
+{% include 'scroll.html' %}
+
+    <div class="main_news">
+		{% for post in posts %}
+			<div class='post_view'>
+				<a href="{% url 'articles:article_page' pk=post.pk name=post.user.user_profile.fullname %}">{{post.title}}</a>
+				{% if post.img %}
+					<img src="{{post.img.url}}"/>
+				{% else %}
+				{% endif %}
+				<p>{{post.contentmax}}</p>
+
+				<div class='info_user_post'>
+					<img src="{{post.user.user_profile.avatar.url}}"  />
+					<a href="{% url 'profiles:profiles_page' pk=post.user.pk name=post.user.user_profile.fullname %}">{{post.user.first_name}} {{post.user.last_name}}</a>
+					
+					<span>{{ post.date|date:'m-d H:i' }}</span>
+					<span>комментариев : {{post.lenght_comments}}</span>
+				</div>
+			</div>
+		{% endfor %}
+</div>
+
+
+  {% if posts.has_other_pages %}
+  <div class="pagination">
+    {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <p class="disabled"><span>&laquo;</span></p>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if users.number == i %}
+        <p> class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></p>
+      {% else %}
+        <a href="?page={{ i }}">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}">&raquo;</a>
+    {% else %}
+      <p class="disabled"><span>&raquo;</span></p>
+    {% endif %}
+  </div>
+{% endif %}
+
+
+
+
+{% endblock content %}

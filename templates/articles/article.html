@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatitle %} {{post.description}} {% endblock metatitle %}
+{% block metades %}  {{post.description}} {% endblock metades %}
+
+{% block title %} {{post.title}} {% endblock title %}
+
+
+{% block content %}
+
+	{% include 'scroll.html' %}
+	{% include 'backup.html' %}
+		<div class="container_article">
+		<div class="article">
+			<h3>{{ post.title }}</h3>
+			{% if post.img %}
+				<img src="{{post.img.url}}" />
+			{% else %}
+			{% endif %}
+			<p class="post_desc">{{post.description}}</p>
+			<p>{{post.content|safe}}</p>
+		<div class="article_info_author">
+			<img src="{{post.user.user_profile.avatar.url}}" />
+			<a href="{% url 'profiles:profiles_page' pk=post.user.pk name=post.user.user_profile.fullname %}">{{post.user.first_name}} {{post.user.last_name}}</a>
+			<span>{{ post.date|date:'m-d H:i' }}</span>
+		</div>
+		<div class="social_btn">
+			<div class="social-likes" data-counters="no">
+				<div class="facebook" title="Поделиться ссылкой на Фейсбуке">Facebook</div>
+				<div class="twitter" title="Поделиться ссылкой в Твиттере">Twitter</div>
+				<div class="vkontakte" title="Поделиться ссылкой во Вконтакте">Вконтакте</div>
+			</div>
+		</div>
+
+		</div>
+
+
+
+		<div class="comments_containers">
+			{% for comment in com %}
+				<p>{{comment.text}}</p>
+			{% endfor %}
+		</div>
+
+
+		<div class='form_comments'>
+				<form method="POST" class="form" >
+					{% csrf_token %}
+					{{form}}<br />
+					<button type="submit"> ДОБАВИТЬ </button>
+				</form>
+		</div>
+		</div>
+
+{% endblock content %}

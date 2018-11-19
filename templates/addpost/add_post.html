@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block metatitle %} Что бы добавить пост вы должны быть редактором. {% endblock metatitle %}
+{% block title %} НОВЫЙ ПОСТ {% endblock title %}
+
+
+{% block content %}
+
+{% include 'backup.html' %}
+
+    <div class="add_post_form">
+    <form method="POST" enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <input type="submit" name="" value="ДОБАВИТЬ ПОСТ">
+    </form>
+    </div>
+ 
+{% endblock content %}

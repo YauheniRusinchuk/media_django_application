@@ -1,0 +1,9 @@
+<div class='header'>
+	<a class='logo' href="{% url 'home:home_index' %}">ZAREPOST.COM</a>
+	<form method="POST" action="{% url 'search:search_page' %}">
+		{% csrf_token %}
+		<input class='input_search' type="text" name="search" placeholder="Поиск ..." />
+	</form>
+	<a class='redactors_list' href="{% url 'redactors:redactors_page' %}">НАШИ РЕДАКТОРЫ</a>
+	<a class='redactors_list' href="{% url 'about' %}">О НАС</a>
+</div>

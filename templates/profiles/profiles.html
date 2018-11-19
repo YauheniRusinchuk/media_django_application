@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block metatitle %} Мы это независимое мнение обо всем что происходит вокрут нас. Мы стараемся писать о проблемах которые нас окружают. {% endblock metatitle %}
+{% block metades %} Пишем о проблемах современного мира. О том что нас окружает. Проблемы человечества и России. Разбираемся как улучшить нашу жизнь вместе. {% endblock metades %}
+{% block title %} ZAREPOST.COM - НАШ РЕДАКТОР - {{user_p.first_name}} {{user_p.last_name}} {% endblock title %}
+
+
+{% block content %}
+
+
+{% include 'scroll.html' %}
+{% include 'backup.html' %}
+		
+		<div class="container_profile">
+		<div class="profile_user">
+			<img src="{{user_p.user_profile.avatar.url}}" />
+			<h3>{{user_p.first_name}} {{user_p.last_name}}</h3>
+			<p>{{user_p.user_profile.description}}</p>
+		</div>
+		<div class='user_posts'>
+
+			{% for post in posts %}
+				<a href="{% url 'articles:article_page' pk=post.pk name=post.user.user_profile.fullname %}">{{post.title}}</a>
+			{% endfor %}
+		</div>
+		</div>
+
+
+{% endblock content %}

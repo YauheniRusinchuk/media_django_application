@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block metatitle %} Мы это независимое мнение обо всем что происходит вокрут нас. Мы стараемся писать о проблемах которые нас окружают. {% endblock metatitle %}
+{% block title %} ПОИСК {% endblock title %}
+
+
+{% block content %}
+{% include 'scroll.html' %}
+{% include 'backup.html' %}
+  
+  <div class='container_search'>
+
+    <h3> РЕЗУЛЬТАТ ПОИСКА </h3>
+    {% if posts %}
+      {% for post in posts %}
+        <a class='result_a' href="{% url 'articles:article_page' pk=post.pk name=post.user.user_profile.fullname %}">{{post.title}}</a>
+      {% endfor %}
+    {% else %}
+      <p> ИЗВИНИТЕ НО НИЧЕГО НЕ НАЙДЕНО! </p>
+    {% endif %}
+  </div>  
+
+{% endblock content %}
