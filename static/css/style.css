@@ -526,7 +526,7 @@ body {
 
 .form_comments form .input_comment {
   width: 70%;
-  border: 2px solid #1b5982;
+  border: 1px solid #1b5982;
   border-radius: 3px;
   padding: 5px 10px;
   resize: none;
@@ -546,7 +546,7 @@ body {
   cursor: pointer;
   margin-top: 10px;
   background-color: white;
-  border: 2px solid #1b5982;
+  border: 1px solid #1b5982;
   border-radius: 3px;
   padding: 3px 20px;
   outline: none;
