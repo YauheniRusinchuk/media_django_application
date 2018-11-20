@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY','cp^nvcmffm7wt1sd9ot_l$$5^1re^x)=n*(=cw#$6!p3z(pi^o')
+SECRET_KEY = 'cp^nvcmffm7wt1sd9ot_l$$5^1re^x)=n*(=cw#$6!p3z(pi^o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['za-repost.herokuapp.com', ]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -96,9 +96,7 @@ DATABASES = {
 }
 
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
@@ -138,7 +136,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
@@ -150,7 +147,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
-MEDIAFILES_DIRS = (MEDIA_ROOT)
 
 
 LOGIN_REDIRECT_URL = '/'
